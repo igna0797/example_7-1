@@ -34,8 +34,9 @@ typedef enum{
 DigitalOut incorrectCodeLed(LED3);
 DigitalOut systemBlockedLed(LED2);
 
-InterruptIn motorDirection1Button(PF_9);
-InterruptIn motorDirection2Button(PF_8);
+InterruptIn motorDirection1Button(PF_9); //NACHO
+InterruptIn motorDirection2Button(PF_8); //NICO
+
 
 
 //=====[Declaration of external public global variables]=======================
@@ -296,5 +297,6 @@ static void motorDirection1ButtonCallback()
 
 static void motorDirection2ButtonCallback()
 {
-    motorDirectionWrite( DIRECTION_2 );
+    //motorDirectionWrite( DIRECTION_2 );
+    
 }
