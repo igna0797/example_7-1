@@ -295,9 +295,9 @@ static void systemBlockedIndicatorUpdate()
 static void motorDirection1ButtonCallback()
 {
     static int  n; //@note static para que n se mantenga la cuenta
-    char* string;
+    char string[5];
     
-    sprintf(string , "n=%d",n); //@note paso a string para pasarlo a serial com
+    sprintf(string , "n=%d",n++); //@note paso a string para pasarlo a serial com
     pcSerialComStringWrite(string);
 
     alarmLed=!alarmLed;
