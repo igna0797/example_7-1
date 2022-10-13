@@ -16,6 +16,7 @@
 #include "display.h"
 #include "GLCD_fire_alarm.h"
 #include "motor.h"
+#include "pc_serial_com.h"
 
 //=====[Declaration of private defines]========================================
 
@@ -33,6 +34,7 @@ typedef enum{
 
 DigitalOut incorrectCodeLed(LED3);
 DigitalOut systemBlockedLed(LED2);
+DigitalOut alarmLed(LED1);
 
 InterruptIn motorDirection1Button(PF_9);
 InterruptIn motorDirection2Button(PF_8);
@@ -291,6 +293,14 @@ static void systemBlockedIndicatorUpdate()
 
 static void motorDirection1ButtonCallback()
 {
+    static int  n; //@note static para que n se mantenga la cuenta
+    char* string;
+    
+    sprintf(string , "n=%d",n); //@note paso a string para pasarlo a serial com
+    pcSerialComStringWrite(string);
+
+    alarmLed=!alarmLed;
+    
     motorDirectionWrite( DIRECTION_1 );
 }
 
