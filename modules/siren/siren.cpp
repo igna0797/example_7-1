@@ -15,7 +15,7 @@
 
 //=====[Declaration and initialization of public global objects]===============
 
-DigitalOut RGBLed[] = {(PA_7), (PE_6), (PE_5)};
+DigitalOut RGBLed[] = {(PB_4), (PA_0), (PD_12)};
 DigitalOut sirenPin(PC_9);
 AnalogIn potentiometer(A0);
 Ticker tickerBrightControl;
@@ -39,8 +39,8 @@ static float periodSFloat[LEDS_QUANTITY];
 
 //=====[Declarations (prototypes) of private functions]========================
 
-static void setPeriod( lightSystem_t light, float period );
 static void tickerCallbackBrightControl( );
+static void setPeriod( lightSystem_t light, float period );
 
 //=====[Implementations of public functions]===================================
 
@@ -83,7 +83,7 @@ void lightSystemInit()
 
 void lightSystemUpdate()
 {
-    dutyCycle = lightLevelControlRead();
+    //dutyCycle = lightLevelControlRead();
 
     setDutyCycle( RGB_LED_RED, dutyCycle );
     setDutyCycle( RGB_LED_GREEN, dutyCycle );

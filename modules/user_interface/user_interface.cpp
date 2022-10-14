@@ -308,5 +308,22 @@ static void motorDirection1ButtonCallback()
 static void motorDirection2ButtonCallback()
 {
     //motorDirectionWrite( DIRECTION_2 );
+    static int j = 0;
+    if (j == 0){
+        setDutyCycle( RGB_LED_RED, 0.6 );
+        setDutyCycle( RGB_LED_GREEN, 0.05 );
+        setDutyCycle( RGB_LED_BLUE, 0.05 );
+    }
+     if (j == 1){
+        setDutyCycle( RGB_LED_RED, 0.05 );
+        setDutyCycle( RGB_LED_GREEN, 0.6 );
+        setDutyCycle( RGB_LED_BLUE, 0.05 );
+    }
+    if (j == 2){
+        setDutyCycle( RGB_LED_RED, 0.005 );
+        setDutyCycle( RGB_LED_GREEN, 0.05 );
+        setDutyCycle( RGB_LED_BLUE, 0.6 );
+    }
+    j++;
     
 }
