@@ -36,8 +36,10 @@ DigitalOut incorrectCodeLed(LED3);
 DigitalOut systemBlockedLed(LED2);
 DigitalOut alarmLed(LED1);
 
-InterruptIn motorDirection1Button(PF_9); //NACHO
-InterruptIn motorDirection2Button(PF_8); //NICO
+InterruptIn motorDirection1Button(PF_9); //@NACHO
+InterruptIn motorDirection2Button(BUTTON1); //@NICO
+InterruptIn motorDirection3Button(PF_8); //@NACHO
+
 
 
 
@@ -309,21 +311,27 @@ static void motorDirection2ButtonCallback()
 {
     //motorDirectionWrite( DIRECTION_2 );
     static int j = 0;
+    static int brillo = 0;
     if (j == 0){
-        setDutyCycle( RGB_LED_RED, 0.6 );
-        setDutyCycle( RGB_LED_GREEN, 0.05 );
-        setDutyCycle( RGB_LED_BLUE, 0.05 );
+        setDutyCycle( RGB_LED_RED, 0.3 + brillo );
+        setDutyCycle( RGB_LED_GREEN, 0.1 + brillo );
+        setDutyCycle( RGB_LED_BLUE, 0.2 + brillo );
     }
      if (j == 1){
-        setDutyCycle( RGB_LED_RED, 0.05 );
-        setDutyCycle( RGB_LED_GREEN, 0.6 );
-        setDutyCycle( RGB_LED_BLUE, 0.05 );
+        setDutyCycle( RGB_LED_RED, 0.2 + brillo );
+        setDutyCycle( RGB_LED_GREEN, 0.3 + brillo );
+        setDutyCycle( RGB_LED_BLUE, 0.1 + brillo );
     }
     if (j == 2){
-        setDutyCycle( RGB_LED_RED, 0.005 );
-        setDutyCycle( RGB_LED_GREEN, 0.05 );
-        setDutyCycle( RGB_LED_BLUE, 0.6 );
+        setDutyCycle( RGB_LED_RED, 0.1 + brillo );
+        setDutyCycle( RGB_LED_GREEN, 0.2 + brillo );
+        setDutyCycle( RGB_LED_BLUE, 0.3 + brillo );
+        j = -1;
+        brillo += 0.1;
     }
     j++;
+    if (brillo == 0.9) {
+        brillo = 0.1;
+    }
     
 }
